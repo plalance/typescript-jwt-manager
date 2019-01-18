@@ -48,7 +48,7 @@ export default class JwtManager {
      */
     generateEncodedJwt = () => {
 
-        if(this.header !== {} && this.data !== {} && this.secret !== ""){
+        if(this.header !== {} || this.data !== {} || this.secret !== ""){
             console.log("Attention :", "Assurez-vous d'avoir ajouté des informations dans le header, data et d'avoir renseigné une 'secret phrase'.");
         }
 
