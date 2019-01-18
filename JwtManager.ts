@@ -29,8 +29,8 @@ export default class JwtManager {
      * @param property String
      * @param value String
      */
-    addHeaderProperty = (property: String, value: String) => {
-        this.header["'"+property+"'"] = value;
+    addHeaderProperty = (property: any, value: String) => {
+        this.header[property] = value;
     };
 
     /**
@@ -39,8 +39,8 @@ export default class JwtManager {
      * @param property String
      * @param value String
      */
-    addDataProperty = (property: String, value: String) => {
-        this.data["'"+property+"'"] = value;
+    addDataProperty = (property: any, value: String) => {
+        this.data[property] = value;
     };
 
     /**
