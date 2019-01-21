@@ -12,10 +12,13 @@ export default class JwtManager {
     private data: Object = {};
 
     /** Secret */
-    private secret: String = "";
+    private secret: string = "";
 
     /** Encoded Jwt */
-    private encodedJwt: String = "";
+    private encodedJwt: string = "";
+
+    /** Name of the JWT in the localStorage */
+    private jwtLocalStorageName: string = "JwtManagerToken";
 
     /**
      * Constructor
@@ -78,6 +81,14 @@ export default class JwtManager {
     };
 
     /**
+     * Add JWT to Local Storage
+     * */
+    addJwtToLocalStorage(){
+        localStorage.setItem(this.jwtLocalStorageName, JSON.stringify(this.getClearJwt()));
+    }
+
+
+    /**
      * Encodes something with base64 algo.
      */
     base64url = (source) => {
@@ -106,7 +117,7 @@ export default class JwtManager {
      * Set Secret of the JWT.
      * @param phrase String
      */
-    setSecret = (phrase: String) => {
+    setSecret = (phrase: string) => {
         this.secret = phrase;
     };
 
@@ -124,5 +135,33 @@ export default class JwtManager {
      */
     getEncodedJwt = () : String => {
         return this.encodedJwt;
-    }
+    };
+
+    /**
+     * Returns clear JWT Object.
+     * @return Object
+     */
+    getClearJwt = () : Object => {
+        return {
+            header: this.header,
+            data: this.data
+        }
+    };
+
+    /**
+     * Set LocaStorage JWT's name.
+     * @param name String
+     */
+    setJwtLocaStorageName = (name: string) => {
+        this.jwtLocalStorageName = name;
+    };
+
+    /**
+     * Get LocaStorage JWT's name.
+     * @return String
+     */
+    getJwtLocaStorageName = () => {
+        return this.jwtLocalStorageName;
+    };
+
 }
